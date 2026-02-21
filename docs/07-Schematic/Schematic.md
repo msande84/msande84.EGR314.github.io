@@ -1,5 +1,5 @@
 ---
-title: Module Schematic
+title: Wireless Schematic
 ---
 
 ## Overview
@@ -7,7 +7,7 @@ title: Module Schematic
 This schematic is design to connect to an external server through Wi-Fi to send telemetry and receive control commands.
 
 ![schematic](EGR314.png){style width:"350" height:"300;"}
-**Figure ##:** Showing a example schematic.
+**Figure ##:** Showing my schematic of the wireless subsystem.
 
 
 ## Resouces
