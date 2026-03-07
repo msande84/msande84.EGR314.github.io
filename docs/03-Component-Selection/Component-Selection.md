@@ -91,6 +91,7 @@ title: Component Selection
     | Low voltage 3.3V                          |
     | Meets surface mount constraint of project |
 
+**Selected Component**
 **Rationale:** A all inclusive WiFi module will be easier to use than separate antenna and clock.
 
 2. ATWINC1510-MR210PB1140 surface mount WiFi Module
