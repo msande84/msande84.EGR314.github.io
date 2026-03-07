@@ -72,6 +72,8 @@ title: Component Selection
     | Wide operating temperature range          | More complicated wiring                                          |
     | Meets surface mount constraint of project |
 
+**Selected Component**
+
 **Rationale:** Meets power requirements of project.
 
 
@@ -91,7 +93,6 @@ title: Component Selection
     | Low voltage 3.3V                          |
     | Meets surface mount constraint of project |
 
-**Selected Component**
 **Rationale:** A all inclusive WiFi module will be easier to use than separate antenna and clock.
 
 2. ATWINC1510-MR210PB1140 surface mount WiFi Module
@@ -126,3 +127,14 @@ title: Component Selection
 
 **Rationale:** A all inclusive WiFi module will be easier to use than separate antenna and clock.
 
+4. Built in Wi-Fi Module in ESP32
+
+    | Pros                                      | Cons                                                             |
+    | ----------------------------------------- | ---------------------------------------------------------------- |
+    | 801.11 Certified                          | Max supply voltage 3.6V |
+    | Built in antenna                          |
+    | Meets surface mount constraint of project |
+
+**Selected Component**
+
+**Rationale:** A all inclusive WiFi module will be easier to use than adding an extra component.
