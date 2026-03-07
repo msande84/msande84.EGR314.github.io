@@ -58,6 +58,23 @@ title: Component Selection
 
 **Rationale:** Affordable linear voltage regulator.
 
+3. LM2574HVM-3.3/NOPB surface mount voltage regulator
+
+    ![](LM2574HVM.png)
+
+    * $5.31/each
+    * [link to product](https://www.digikey.com/en/products/detail/texas-instruments/LM2574HVM-3-3-NOPB/363631)
+
+    | Pros                                      | Cons                                                             |
+    | ----------------------------------------- | ---------------------------------------------------------------- |
+    | 3.3V output                               | Expensive                                                        |
+    | Variable Output                           | Needs special PCB layout.                                        |
+    | Wide operating temperature range          | More complicated wiring                                          |
+    | Meets surface mount constraint of project |
+
+**Rationale:** Meets power requirements of project.
+
+
 **WiFi Chip**
 
 1. WFM200S022XNA3 surface mount WiFi Module
