@@ -9,9 +9,7 @@ tags:
 This is a breakdown of the parts of the wireless subsystem.
 
 * power levels
-* UART connection to sensor subsystem
-* SPI connection to motor subsystem
-* Digital serial to actuator subsystem
+* RX and TX connection to other subsystems in loop
 * Power source
 
 ## Block Diagram of Wireless Subsytem
