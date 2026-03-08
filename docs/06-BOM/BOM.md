@@ -16,5 +16,5 @@ As you can see, the text can be difficult to read without opening the image.
 
 ## Resouce
 
-The Bill of Material as a PDF download is available [*here*](PDF_For_BOM_EXAMPLE.pdf).
+The Bill of Material as a PDF download is available [*here*](Sanderson_EGR314_BOM.pdf).
 
