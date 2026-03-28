@@ -1095,6 +1095,122 @@
 
   <h1>API</h1>
 
+<p><strong>API</strong></p>
+<p><em>Connectors</em></p>
+<table>
+<thead>
+<tr>
+<th>Pin Name</th>
+<th>#</th>
+<th>#</th>
+<th>Pin Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>9-12V External Power</td>
+<td>1</td>
+<td>2</td>
+<td>UART</td>
+</tr>
+<tr>
+<td>N/A</td>
+<td>3</td>
+<td>4</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td>N/A</td>
+<td>5</td>
+<td>6</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td>N/A</td>
+<td>7</td>
+<td>8</td>
+<td>Ground</td>
+</tr>
+</tbody>
+</table>
+<p><em>UART Info</em></p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Speed</td>
+<td>9600 Baud</td>
+</tr>
+<tr>
+<td>Num Bytes</td>
+<td>8</td>
+</tr>
+<tr>
+<td>Parity</td>
+<td>None</td>
+</tr>
+<tr>
+<td>Stop Bits</td>
+<td>1</td>
+</tr>
+<tr>
+<td>Flow control</td>
+<td>None</td>
+</tr>
+</tbody>
+</table>
+<p><em>Data Stream</em></p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Byte 1</th>
+<th>Byte 2</th>
+<th>Byte 3</th>
+<th>Byte 4</th>
+<th>Byte 5</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Variable Name</td>
+<td>speed</td>
+<td>direction</td>
+<td>arm_x</td>
+<td>arm_y</td>
+<td>arm_z</td>
+</tr>
+<tr>
+<td>Variable Type</td>
+<td>uint8_t</td>
+<td>boolean</td>
+<td>uint8_t</td>
+<td>uint8_t</td>
+<td>uint8_t</td>
+</tr>
+<tr>
+<td>Min Value</td>
+<td>-100</td>
+<td>0</td>
+<td>-100</td>
+<td>-100</td>
+<td>-50</td>
+</tr>
+<tr>
+<td>Max Value</td>
+<td>100</td>
+<td>1</td>
+<td>100</td>
+<td>100</td>
+<td>100</td>
+</tr>
+</tbody>
+</table>
 
 
 
@@ -1102,6 +1218,8 @@
 
 
 
+  
+  
 
 
 
