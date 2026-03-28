@@ -7,12 +7,12 @@ title: API
 
 *Connectors*
 
-  | Pin Name             | # | # | Pin Name |
-  |----------------------|---|---|----------|
-  | 9-12V External Power | 1 | 2 | UART     |
-  | N/A                  | 3 | 4 | N/A      |
-  | N/A                  | 5 | 6 | N/A      |
-  | N/A                  | 7 | 8 | Ground   |
+  | Pin Name          | # | # | Pin Name |
+  |-------------------|---|---|----------|
+  | 12V Battery Power | 1 | 2 | UART     |
+  | N/A               | 3 | 4 | N/A      |
+  | N/A               | 5 | 6 | N/A      |
+  | N/A               | 7 | 8 | Ground   |
 
 *UART Info*
 
