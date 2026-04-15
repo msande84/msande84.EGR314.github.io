@@ -29,7 +29,7 @@ title: API
   |               |	Byte 1  | Byte 2    | Byte 3  | Byte 4  | Byte 5  |
   |---------------|---------|-----------|---------|---------|---------|
   | Variable Name | speed   | direction | arm_x   | arm_y   | arm_z   |
-  | Variable Type | uint8_t | boolean   |	uint8_t | uint8_t | uint8_t |
+  | Variable Type | char    | char      |	char    | char    | char    |
   | Min Value     | -100    | 0         |	-100    | -100    | -50     |
   | Max Value     | 100     | 1         |	100     | 100     | 100     |
 
