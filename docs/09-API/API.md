@@ -5,6 +5,16 @@ title: API
 
 **API**
 
+*ESP32*
+
+  | Pin Name  | #  |
+  |-----------|----|
+  | LED       | 16 |
+  | LED2      | 38 |
+  | LED3      | 42 |
+  | TX        | 44 |
+  | RX        | 43 |
+
 *Connectors*
 
   | Pin Name          | # | # | Pin Name |
