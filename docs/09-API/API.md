@@ -36,11 +36,17 @@ title: API
 
 *Data Stream*
 
-  |               |	Byte 1  | Byte 2    | Byte 3  | Byte 4  | Byte 5  |
-  |---------------|---------|-----------|---------|---------|---------|
-  | Variable Name | speed   | direction | arm_x   | arm_y   | arm_z   |
-  | Variable Type | char    | char      |	char    | char    | char    |
-  | Min Value     | -100    | 0         |	-100    | -100    | -50     |
-  | Max Value     | 100     | 1         |	100     | 100     | 100     |
+Message format: "AZ12messagehereYB"
+1 = Who sent the message
+2 = Who the message is for
+
+  | Message Type  |	Armando ID: A | Manuel ID: C | Khalid ID: K | Lia ID: L | Vedaa ID: V | Matthew ID: M |
+  |---------------|---------|---------|---------|---------|---------|---------|
+  | Sensor value  | -       | -       | -       | -       | S       | R       |
+  | Motor speed   | -       | -       |	R       | S       | -       | R       |
+  | Arm position  | R       | -       | -       | S       | -       | R       |
+  | Connected     | S/R     | S/R     |	S/R     | S/R     | S/R     | R       |
+  | error message | S       | S       |	S       | S/R     | -       | S/R     |
+  | reset         | R       | R       |	R       | S/R     | R       | S/R     |
 
   
