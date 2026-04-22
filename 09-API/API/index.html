@@ -1196,49 +1196,75 @@
 </tbody>
 </table>
 <p><em>Data Stream</em></p>
+<p>Message format: "AZ12messagehereYB"
+1 = Who sent the message
+2 = Who the message is for</p>
 <table>
 <thead>
 <tr>
-<th></th>
-<th>Byte 1</th>
-<th>Byte 2</th>
-<th>Byte 3</th>
-<th>Byte 4</th>
-<th>Byte 5</th>
+<th>Message Type</th>
+<th>Armando ID: A</th>
+<th>Manuel ID: C</th>
+<th>Khalid ID: K</th>
+<th>Lia ID: L</th>
+<th>Vedaa ID: V</th>
+<th>Matthew ID: M</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Variable Name</td>
-<td>speed</td>
-<td>direction</td>
-<td>arm_x</td>
-<td>arm_y</td>
-<td>arm_z</td>
+<td>Sensor value</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>S</td>
+<td>R</td>
 </tr>
 <tr>
-<td>Variable Type</td>
-<td>char</td>
-<td>char</td>
-<td>char</td>
-<td>char</td>
-<td>char</td>
+<td>Motor speed</td>
+<td>-</td>
+<td>-</td>
+<td>R</td>
+<td>S</td>
+<td>-</td>
+<td>R</td>
 </tr>
 <tr>
-<td>Min Value</td>
-<td>-100</td>
-<td>0</td>
-<td>-100</td>
-<td>-100</td>
-<td>-50</td>
+<td>Arm position</td>
+<td>R</td>
+<td>-</td>
+<td>-</td>
+<td>S</td>
+<td>-</td>
+<td>R</td>
 </tr>
 <tr>
-<td>Max Value</td>
-<td>100</td>
-<td>1</td>
-<td>100</td>
-<td>100</td>
-<td>100</td>
+<td>Connected</td>
+<td>S/R</td>
+<td>S/R</td>
+<td>S/R</td>
+<td>S/R</td>
+<td>S/R</td>
+<td>R</td>
+</tr>
+<tr>
+<td>error message</td>
+<td>S</td>
+<td>S</td>
+<td>S</td>
+<td>S/R</td>
+<td>-</td>
+<td>S/R</td>
+</tr>
+<tr>
+<td>reset</td>
+<td>R</td>
+<td>R</td>
+<td>R</td>
+<td>S/R</td>
+<td>R</td>
+<td>S/R</td>
 </tr>
 </tbody>
 </table>
