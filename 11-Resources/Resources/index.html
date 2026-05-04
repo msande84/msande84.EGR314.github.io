@@ -89,6 +89,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#code" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -1062,6 +1067,17 @@
       
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Resources
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -1071,6 +1087,41 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+      
+        <li class="md-nav__item">
+  <a href="#code" class="md-nav__link">
+    <span class="md-ellipsis">
+      Code
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#resouces" class="md-nav__link">
+    <span class="md-ellipsis">
+      Resouces
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -1204,6 +1255,32 @@
   
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+      
+        <li class="md-nav__item">
+  <a href="#code" class="md-nav__link">
+    <span class="md-ellipsis">
+      Code
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#resouces" class="md-nav__link">
+    <span class="md-ellipsis">
+      Resouces
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -1227,7 +1304,283 @@
 
   <h1>Resources</h1>
 
+<h2 id="code">Code</h2>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">ssl</span>
+<span class="kn">from</span> <span class="nn">mqtt_as.mqtt_as</span> <span class="kn">import</span> <span class="n">MQTTClient</span>
+<span class="kn">from</span> <span class="nn">mqtt_as.mqtt_local</span> <span class="kn">import</span> <span class="n">wifi_led</span><span class="p">,</span> <span class="n">blue_led</span><span class="p">,</span> <span class="n">config</span>
+<span class="kn">import</span> <span class="nn">uasyncio</span> <span class="k">as</span> <span class="nn">asyncio</span>
+<span class="kn">from</span> <span class="nn">machine</span> <span class="kn">import</span> <span class="n">UART</span>
+<span class="kn">from</span> <span class="nn">config</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">machine</span> <span class="kn">import</span> <span class="n">Pin</span>
+<span class="kn">from</span> <span class="nn">time</span> <span class="kn">import</span> <span class="n">sleep</span>
 
+<span class="c1"># =========================</span>
+<span class="c1"># USER / TEAM CONFIG</span>
+<span class="c1"># =========================</span>
+<span class="n">MY_ID</span> <span class="o">=</span> <span class="sa">b</span><span class="s1">'M'</span>  <span class="c1"># Your ID</span>
+<span class="n">TEAM</span> <span class="o">=</span> <span class="p">[</span><span class="sa">b</span><span class="s1">'M'</span><span class="p">,</span> <span class="sa">b</span><span class="s1">'C'</span><span class="p">,</span> <span class="sa">b</span><span class="s1">'A'</span><span class="p">,</span> <span class="sa">b</span><span class="s1">'L'</span><span class="p">,</span> <span class="sa">b</span><span class="s1">'V'</span><span class="p">,</span> <span class="sa">b</span><span class="s1">'K'</span><span class="p">]</span>  <span class="c1"># valid team members</span>
+<span class="n">MAX_MSG_LEN</span> <span class="o">=</span> <span class="mi">32</span>
+
+<span class="c1"># =========================</span>
+<span class="c1"># UART SETUP</span>
+<span class="c1"># =========================</span>
+<span class="n">uart</span> <span class="o">=</span> <span class="n">UART</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">9600</span><span class="p">,</span> <span class="n">tx</span><span class="o">=</span><span class="n">Pin</span><span class="p">(</span><span class="mi">44</span><span class="p">,</span> <span class="n">Pin</span><span class="o">.</span><span class="n">OUT</span><span class="p">),</span> <span class="n">rx</span><span class="o">=</span><span class="n">Pin</span><span class="p">(</span><span class="mi">43</span><span class="p">,</span> <span class="n">Pin</span><span class="o">.</span><span class="n">IN</span><span class="p">))</span>
+<span class="n">uart</span><span class="o">.</span><span class="n">init</span><span class="p">(</span><span class="mi">9600</span><span class="p">,</span> <span class="n">bits</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">parity</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">stop</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">flow</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="n">led</span> <span class="o">=</span> <span class="n">Pin</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="n">Pin</span><span class="o">.</span><span class="n">OUT</span><span class="p">)</span>
+<span class="n">led2</span> <span class="o">=</span> <span class="n">Pin</span><span class="p">(</span><span class="mi">38</span><span class="p">,</span> <span class="n">Pin</span><span class="o">.</span><span class="n">OUT</span><span class="p">)</span>
+<span class="n">led3</span> <span class="o">=</span> <span class="n">Pin</span><span class="p">(</span><span class="mi">42</span><span class="p">,</span> <span class="n">Pin</span><span class="o">.</span><span class="n">OUT</span><span class="p">)</span>
+<span class="n">Button</span> <span class="o">=</span> <span class="n">Pin</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="n">Pin</span><span class="o">.</span><span class="n">IN</span><span class="p">)</span>
+<span class="n">led</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">sleep</span><span class="p">(</span><span class="mf">0.2</span><span class="p">)</span>
+<span class="n">led</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">led2</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">sleep</span><span class="p">(</span><span class="mf">0.2</span><span class="p">)</span>
+<span class="n">led2</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">led3</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">sleep</span><span class="p">(</span><span class="mf">0.2</span><span class="p">)</span>
+<span class="n">led3</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">led</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="c1"># =========================</span>
+<span class="c1"># MESSAGE PARSER</span>
+<span class="c1"># =========================</span>
+<span class="k">def</span> <span class="nf">parse_message</span><span class="p">(</span><span class="n">msg</span><span class="p">):</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">msg</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="sa">b</span><span class="s1">'AZ'</span><span class="p">)</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">msg</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="sa">b</span><span class="s1">'YB'</span><span class="p">):</span>
+            <span class="k">return</span> <span class="kc">None</span><span class="p">,</span> <span class="s2">"FORMAT_ERROR"</span>
+
+        <span class="n">core</span> <span class="o">=</span> <span class="n">msg</span><span class="p">[</span><span class="mi">2</span><span class="p">:</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span>  <span class="c1"># remove AZ and BY</span>
+
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">core</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">None</span><span class="p">,</span> <span class="s2">"FORMAT_ERROR"</span>
+
+        <span class="n">src</span> <span class="o">=</span> <span class="n">core</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">dest</span> <span class="o">=</span> <span class="n">core</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">2</span><span class="p">]</span>
+        <span class="n">body</span> <span class="o">=</span> <span class="n">core</span><span class="p">[</span><span class="mi">2</span><span class="p">:]</span>
+
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">body</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">MAX_MSG_LEN</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">None</span><span class="p">,</span> <span class="s2">"TOO_LONG"</span>
+
+        <span class="k">if</span> <span class="n">src</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">TEAM</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">None</span><span class="p">,</span> <span class="s2">"UNKNOWN_SENDER"</span>
+
+
+
+        <span class="k">return</span> <span class="p">(</span><span class="n">src</span><span class="p">,</span> <span class="n">dest</span><span class="p">,</span> <span class="n">body</span><span class="p">),</span> <span class="kc">None</span>
+
+    <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">None</span><span class="p">,</span> <span class="s2">"PARSE_FAIL"</span>
+
+<span class="c1"># =========================</span>
+<span class="c1"># UART RECEIVER TASK</span>
+<span class="c1"># =========================</span>
+<span class="k">async</span> <span class="k">def</span> <span class="nf">receiver</span><span class="p">():</span>
+    <span class="n">buffer</span> <span class="o">=</span> <span class="sa">b</span><span class="s1">''</span>
+    <span class="n">sreader</span> <span class="o">=</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">StreamReader</span><span class="p">(</span><span class="n">uart</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"UART RX LIVE"</span><span class="p">)</span>
+    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="n">res</span> <span class="o">=</span> <span class="k">await</span> <span class="n">sreader</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">led3</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">sleep</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>
+        <span class="n">led3</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">res</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">res</span><span class="p">:</span>
+            <span class="k">continue</span>
+
+        <span class="n">buffer</span> <span class="o">+=</span> <span class="n">res</span>
+
+        <span class="c1"># Detect end of message</span>
+        <span class="k">if</span> <span class="n">buffer</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="sa">b</span><span class="s1">'YB'</span><span class="p">):</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">"UART RX:"</span><span class="p">,</span> <span class="n">buffer</span><span class="p">)</span>
+
+            <span class="n">parsed</span><span class="p">,</span> <span class="n">error</span> <span class="o">=</span> <span class="n">parse_message</span><span class="p">(</span><span class="n">buffer</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="n">error</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s2">"UART Error:"</span><span class="p">,</span> <span class="n">error</span><span class="p">)</span>
+                <span class="n">buffer</span> <span class="o">=</span> <span class="sa">b</span><span class="s1">''</span>
+                <span class="k">continue</span>
+
+            <span class="n">src</span><span class="p">,</span> <span class="n">dest</span><span class="p">,</span> <span class="n">body</span> <span class="o">=</span> <span class="n">parsed</span>
+
+            <span class="k">if</span> <span class="n">dest</span> <span class="o">==</span> <span class="n">MY_ID</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s2">"UART message for ME"</span><span class="p">)</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s2">"From:"</span><span class="p">,</span> <span class="n">src</span><span class="o">.</span><span class="n">decode</span><span class="p">(),</span> <span class="s2">"Message:"</span><span class="p">,</span> <span class="n">body</span><span class="o">.</span><span class="n">decode</span><span class="p">())</span>
+                <span class="k">await</span> <span class="n">client</span><span class="o">.</span><span class="n">publish</span><span class="p">(</span><span class="n">TOPIC_PUB</span><span class="p">,</span> <span class="n">buffer</span><span class="p">,</span> <span class="n">qos</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+                <span class="n">led</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+                <span class="n">sleep</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>
+                <span class="n">led</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+            <span class="k">else</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s2">"Forwarding via MQTT"</span><span class="p">)</span>
+                <span class="k">await</span> <span class="n">client</span><span class="o">.</span><span class="n">publish</span><span class="p">(</span><span class="n">TOPIC_PUB</span><span class="p">,</span> <span class="n">buffer</span><span class="p">,</span> <span class="n">qos</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+                <span class="c1">#Uncomment below to switch to sending message through UART loop</span>
+                <span class="c1">#print("Forwarding to UART ", buffer)</span>
+                <span class="c1">#uart.write(buffer)</span>
+                <span class="c1">#led2.value(1)</span>
+                <span class="c1">#sleep(0.5)</span>
+                <span class="c1">#led2.value(0)</span>
+
+            <span class="n">buffer</span> <span class="o">=</span> <span class="sa">b</span><span class="s1">''</span>
+<span class="c1"># =========================</span>
+<span class="c1"># MQTT SUB CALLBACK</span>
+<span class="c1"># =========================</span>
+<span class="k">def</span> <span class="nf">sub_cb</span><span class="p">(</span><span class="n">topic</span><span class="p">,</span> <span class="n">msg</span><span class="p">,</span> <span class="n">retained</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"MQTT RX:"</span><span class="p">,</span> <span class="n">msg</span><span class="p">)</span>
+
+    <span class="n">parsed</span><span class="p">,</span> <span class="n">error</span> <span class="o">=</span> <span class="n">parse_message</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">error</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"MQTT Error:"</span><span class="p">,</span> <span class="n">error</span><span class="p">)</span>
+        <span class="k">return</span>
+
+    <span class="n">src</span><span class="p">,</span> <span class="n">dest</span><span class="p">,</span> <span class="n">body</span> <span class="o">=</span> <span class="n">parsed</span>
+
+    <span class="k">if</span> <span class="n">dest</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">TEAM</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"UNKNOWN_DESTINATION"</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">dest</span> <span class="o">==</span> <span class="n">MY_ID</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"MQTT message for ME"</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"From:"</span><span class="p">,</span> <span class="n">src</span><span class="o">.</span><span class="n">decode</span><span class="p">(),</span> <span class="s2">"Message:"</span><span class="p">,</span> <span class="n">body</span><span class="o">.</span><span class="n">decode</span><span class="p">())</span>
+
+        <span class="c1"># Flash LED</span>
+        <span class="n">led</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+        <span class="n">sleep</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>
+        <span class="n">led</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"Forwarding to UART "</span><span class="p">,</span> <span class="n">msg</span><span class="p">)</span>
+        <span class="n">uart</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+        <span class="n">led2</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">sleep</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>
+        <span class="n">led2</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="c1"># =========================</span>
+<span class="c1"># HEARTBEAT LED</span>
+<span class="c1"># =========================</span>
+<span class="k">async</span> <span class="k">def</span> <span class="nf">heartbeat</span><span class="p">():</span>
+    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="k">await</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">sleep_ms</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span>
+
+<span class="c1"># =========================</span>
+<span class="c1"># WIFI HANDLER</span>
+<span class="c1"># =========================</span>
+<span class="k">async</span> <span class="k">def</span> <span class="nf">wifi_han</span><span class="p">(</span><span class="n">state</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">'Wifi is '</span><span class="p">,</span> <span class="s1">'up'</span> <span class="k">if</span> <span class="n">state</span> <span class="k">else</span> <span class="s1">'down'</span><span class="p">)</span>
+    <span class="k">await</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># =========================</span>
+<span class="c1"># MQTT CONNECT HANDLER</span>
+<span class="c1"># =========================</span>
+<span class="k">async</span> <span class="k">def</span> <span class="nf">conn_han</span><span class="p">(</span><span class="n">client</span><span class="p">):</span>
+    <span class="k">await</span> <span class="n">client</span><span class="o">.</span><span class="n">subscribe</span><span class="p">(</span><span class="n">TOPIC_SUB</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># =========================</span>
+<span class="c1"># BUTTON TASK</span>
+<span class="c1"># =========================</span>
+<span class="k">async</span> <span class="k">def</span> <span class="nf">button_task</span><span class="p">():</span>
+    <span class="n">last_state</span> <span class="o">=</span> <span class="mi">1</span>  <span class="c1"># assuming pull-up (not pressed = 1)</span>
+
+    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="n">current_state</span> <span class="o">=</span> <span class="n">Button</span><span class="o">.</span><span class="n">value</span><span class="p">()</span>
+
+        <span class="c1"># Detect press (falling edge)</span>
+        <span class="k">if</span> <span class="n">last_state</span> <span class="o">==</span> <span class="mi">1</span> <span class="ow">and</span> <span class="n">current_state</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">"Button Pressed!"</span><span class="p">)</span>
+
+            <span class="c1"># Example action: send a message</span>
+            <span class="n">msg</span> <span class="o">=</span> <span class="sa">b</span><span class="s1">'AZ'</span> <span class="o">+</span> <span class="n">MY_ID</span> <span class="o">+</span> <span class="sa">b</span><span class="s1">'A'</span> <span class="o">+</span> <span class="sa">b</span><span class="s1">'0'</span> <span class="o">+</span> <span class="sa">b</span><span class="s1">'YB'</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">"Sending:"</span><span class="p">,</span> <span class="n">msg</span><span class="p">)</span>
+            <span class="n">uart</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+            <span class="k">await</span> <span class="n">client</span><span class="o">.</span><span class="n">publish</span><span class="p">(</span><span class="n">TOPIC_PUB</span><span class="p">,</span> <span class="n">msg</span><span class="p">,</span> <span class="n">qos</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+            <span class="c1"># Flash LED for feedback</span>
+            <span class="n">led</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+            <span class="k">await</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.2</span><span class="p">)</span>
+            <span class="n">led</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+            <span class="n">led2</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+            <span class="k">await</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.2</span><span class="p">)</span>
+            <span class="n">led2</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+            <span class="n">led3</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+            <span class="k">await</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.2</span><span class="p">)</span>
+            <span class="n">led3</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+        <span class="n">last_state</span> <span class="o">=</span> <span class="n">current_state</span>
+
+        <span class="k">await</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">sleep_ms</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span>  <span class="c1"># debounce + CPU friendly</span>
+
+<span class="c1"># =========================</span>
+<span class="c1"># MAIN LOOP</span>
+<span class="c1"># =========================</span>
+<span class="k">async</span> <span class="k">def</span> <span class="nf">main</span><span class="p">(</span><span class="n">client</span><span class="p">):</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">await</span> <span class="n">client</span><span class="o">.</span><span class="n">connect</span><span class="p">()</span>
+    <span class="k">except</span> <span class="ne">OSError</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">'Connection failed.'</span><span class="p">)</span>
+        <span class="k">return</span>
+
+    <span class="n">asyncio</span><span class="o">.</span><span class="n">create_task</span><span class="p">(</span><span class="n">receiver</span><span class="p">())</span>
+    <span class="n">asyncio</span><span class="o">.</span><span class="n">create_task</span><span class="p">(</span><span class="n">button_task</span><span class="p">())</span>
+
+    <span class="n">n</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="k">await</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">'publish'</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
+        <span class="k">await</span> <span class="n">client</span><span class="o">.</span><span class="n">publish</span><span class="p">(</span><span class="n">TOPIC_HB</span><span class="p">,</span> <span class="s1">'</span><span class="si">{}</span><span class="s1"> </span><span class="si">{}</span><span class="s1">'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">client</span><span class="o">.</span><span class="n">REPUB_COUNT</span><span class="p">),</span> <span class="n">qos</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">n</span> <span class="o">+=</span> <span class="mi">1</span>
+
+<span class="c1"># =========================</span>
+<span class="c1"># MQTT CONFIG</span>
+<span class="c1"># =========================</span>
+<span class="n">config</span><span class="p">[</span><span class="s1">'server'</span><span class="p">]</span> <span class="o">=</span> <span class="n">MQTT_SERVER</span>
+<span class="n">config</span><span class="p">[</span><span class="s1">'ssid'</span><span class="p">]</span> <span class="o">=</span> <span class="n">WIFI_SSID</span>
+<span class="n">config</span><span class="p">[</span><span class="s1">'wifi_pw'</span><span class="p">]</span> <span class="o">=</span> <span class="n">WIFI_PASSWORD</span>
+
+<span class="n">config</span><span class="p">[</span><span class="s1">'ssl'</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
+
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">'certs26/student_key.pem'</span><span class="p">,</span> <span class="s1">'rb'</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">key_data</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">'certs26/student_crt.pem'</span><span class="p">,</span> <span class="s1">'rb'</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">cert_data</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">'certs26/ca_crt.pem'</span><span class="p">,</span> <span class="s1">'rb'</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">ca_data</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+
+<span class="n">ssl_params</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">"cert"</span><span class="p">:</span> <span class="n">cert_data</span><span class="p">,</span>
+    <span class="s2">"key"</span><span class="p">:</span> <span class="n">key_data</span><span class="p">,</span>
+    <span class="s2">"cadata"</span><span class="p">:</span> <span class="n">ca_data</span><span class="p">,</span>
+    <span class="s2">"server_hostname"</span><span class="p">:</span> <span class="n">MQTT_SERVER</span><span class="p">,</span>
+    <span class="s2">"cert_reqs"</span><span class="p">:</span> <span class="n">ssl</span><span class="o">.</span><span class="n">CERT_REQUIRED</span>
+<span class="p">}</span>
+
+<span class="n">config</span><span class="p">[</span><span class="s2">"ssl_params"</span><span class="p">]</span> <span class="o">=</span> <span class="n">ssl_params</span>
+<span class="n">config</span><span class="p">[</span><span class="s2">"time_server"</span><span class="p">]</span> <span class="o">=</span> <span class="n">MQTT_SERVER</span>
+<span class="n">config</span><span class="p">[</span><span class="s2">"time_server_timeout"</span><span class="p">]</span> <span class="o">=</span> <span class="mi">10</span>
+
+<span class="n">config</span><span class="p">[</span><span class="s1">'subs_cb'</span><span class="p">]</span> <span class="o">=</span> <span class="n">sub_cb</span>
+<span class="n">config</span><span class="p">[</span><span class="s1">'wifi_coro'</span><span class="p">]</span> <span class="o">=</span> <span class="n">wifi_han</span>
+<span class="n">config</span><span class="p">[</span><span class="s1">'connect_coro'</span><span class="p">]</span> <span class="o">=</span> <span class="n">conn_han</span>
+<span class="n">config</span><span class="p">[</span><span class="s1">'clean'</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="n">config</span><span class="p">[</span><span class="s1">'user'</span><span class="p">]</span> <span class="o">=</span> <span class="n">MQTT_USER</span>
+<span class="n">config</span><span class="p">[</span><span class="s2">"password"</span><span class="p">]</span> <span class="o">=</span> <span class="n">MQTT_PASSWORD</span>
+
+<span class="c1"># =========================</span>
+<span class="c1"># START CLIENT</span>
+<span class="c1"># =========================</span>
+<span class="n">MQTTClient</span><span class="o">.</span><span class="n">DEBUG</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="n">client</span> <span class="o">=</span> <span class="n">MQTTClient</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
+
+<span class="n">asyncio</span><span class="o">.</span><span class="n">create_task</span><span class="p">(</span><span class="n">heartbeat</span><span class="p">())</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">asyncio</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">main</span><span class="p">(</span><span class="n">client</span><span class="p">))</span>
+<span class="k">finally</span><span class="p">:</span>
+    <span class="n">client</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+    <span class="n">asyncio</span><span class="o">.</span><span class="n">new_event_loop</span><span class="p">()</span>
+<span class="n">main</span><span class="o">.</span><span class="n">py</span>
+</code></pre></div>
+<h2 id="resouces">Resouces</h2>
+<p>The Zip folder of the code is <a href="../Code.zip"><em>here</em></a>.</p>
 
 
 
