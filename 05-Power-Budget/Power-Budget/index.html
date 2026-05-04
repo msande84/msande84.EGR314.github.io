@@ -1230,7 +1230,7 @@
 <p><strong>Power Management</strong></p>
 <ul>
 <li>3.3V Power rail</li>
-<li>5V Input power from battery</li>
+<li>12V Input power from battery</li>
 </ul>
 <table>
 <thead>
@@ -1261,23 +1261,17 @@
 <td>33</td>
 </tr>
 <tr>
-<td>Microphone</td>
-<td>3.3</td>
-<td>1</td>
-<td>2</td>
-<td>3.3</td>
-<td>6.6</td>
-</tr>
-<tr>
 <td>Total</td>
 <td>-</td>
-<td>26</td>
-<td>52</td>
-<td>85.8</td>
-<td>171.6</td>
+<td>25</td>
+<td>50</td>
+<td>82.5</td>
+<td>165</td>
 </tr>
 </tbody>
 </table>
+<p><strong>Reasoning</strong>
+The only component using a significant amount of power is the ESP32. The only other power consuming parts are the LED's. Based on this my subsystem uses a small fraction of the power all the subsystems will use.</p>
 
 
 
