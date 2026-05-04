@@ -273,7 +273,6 @@ try:
 finally:
     client.close()
     asyncio.new_event_loop()
-main.py
 ```
 
 ## Resouces
