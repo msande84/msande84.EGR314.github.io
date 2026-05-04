@@ -135,6 +135,12 @@ title: Component Selection
     | Built in antenna                          |
     | Meets surface mount constraint of project |
 
-**Selected Component**
-
 **Rationale:** A all inclusive WiFi module will be easier to use than adding an extra component.
+
+
+## Final Components
+ | Part                     | Reasoning                                   |
+ |--------------------------|---------------------------------------------|
+ | LM2574 Voltage Regulator | Easy to understand circuit, cheap, reliable |
+ | ESP32 S3 WROOM-1 N4      | Built in Wi-Fi                              |
+ 
