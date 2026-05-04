@@ -3,7 +3,7 @@ title: PCB
 ---
 
 ## Overview
-
+# PCB Layout
 This PCB is the custom circuit for this project. The main component is the ESP32 microcontroller.
 
 ![PCB](PCB.png){style width:"350" height:"300;"}
@@ -14,6 +14,19 @@ This PCB is the custom circuit for this project. The main component is the ESP32
 
 ![PCB Back](PCBBack.png){style width:"350" height:"300;"}
 **Figure ##:** Showing the back of my PCB of the wireless subsystem.
+
+## Photos
+![PCB Front](PCB_Front.png){style width:"350" height:"300;"}
+**Figure ##:** Showing the front of the bare PCB.
+
+![PCB Back](PCB_Back.png){style width:"350" height:"300;"}
+**Figure ##:** Showing the back of the bare PCB.
+
+![PCB Front_Pop](PCB_Front_Pop.png){style width:"350" height:"300;"}
+**Figure ##:** Showing the front of the populated PCB.
+
+![PCB Back_Pop](PCB_Back_Pop.png){style width:"350" height:"300;"}
+**Figure ##:** Showing the back of the populated PCB.
 
 ## Resouces
 
