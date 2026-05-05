@@ -7,8 +7,8 @@ I was successful in getting all requirements of my subsystem working. I was able
 ## Reflection
 
 # Lessons Learned
-Lessons Learned: What are the top 10 most important things that you learned from working on this project? You may use feedback received from the design review and content you discussed in status reports to address this section. (Use full sentences, ½ page minimum)
 Top 10 most important things that I learned from working on this project:
+
  * Having a jumper to seperate the power from the ESP32 and the voltage regulator is really useful for testing purposes.
  * Adding diodes on shared power and ground pins to prevent shorting will save your PCB if your teammates mess up.
  * Extra LED's and buttons for testing and debugging is really useful.
