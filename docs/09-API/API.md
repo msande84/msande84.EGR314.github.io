@@ -49,4 +49,14 @@ Message format: "AZ12messagehereYB"
   | error message | S       | S       |	S       | S/R     | -       | S/R     |
   | reset         | R       | R       |	R       | S/R     | R       | S/R     |
 
-  
+*Message Structure*
+
+  | **Byte** | **Variable Name** | **Type** | **Example** |  **Description** | **Message Range**
+  |---:|---|---|---|----|:---:|
+  | Byte 1-2 | start      | char | AZ | Start of the message | AZ-AZ |
+  | Byte 3 | source_id    | char | C | Who is it from? | C,L,M,K,V.X|
+  | Byte 4 | dest_id | char | L | Who is it for? | C,L,M,K,V.X|
+  | Byte 5-26 | fps | string | F: 2.0 | Current camera framerate | 0-99|
+  | Byte 5-26 | resolution | string | R:320x240 | Camera resolution | 320x240|
+  | Byte 5-26 | stream status | string | S:ON | Camera resolution | S: ON or S:OFF|
+  | Byte end | end | char | YB | End of message| YB-YB|
