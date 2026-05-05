@@ -970,9 +970,9 @@
 <td style="text-align: right;">Byte 3</td>
 <td>source_id</td>
 <td>char</td>
-<td>C</td>
+<td>M</td>
 <td>Who is it from?</td>
-<td style="text-align: center;">C,L,M,K,V.X</td>
+<td style="text-align: center;">C,L,M,K,V,A,X</td>
 </tr>
 <tr>
 <td style="text-align: right;">Byte 4</td>
@@ -980,31 +980,15 @@
 <td>char</td>
 <td>L</td>
 <td>Who is it for?</td>
-<td style="text-align: center;">C,L,M,K,V.X</td>
+<td style="text-align: center;">C,L,M,K,V,A,X</td>
 </tr>
 <tr>
 <td style="text-align: right;">Byte 5-26</td>
-<td>fps</td>
-<td>string</td>
-<td>F: 2.0</td>
-<td>Current camera framerate</td>
-<td style="text-align: center;">0-99</td>
-</tr>
-<tr>
-<td style="text-align: right;">Byte 5-26</td>
-<td>resolution</td>
-<td>string</td>
-<td>R:320x240</td>
-<td>Camera resolution</td>
-<td style="text-align: center;">320x240</td>
-</tr>
-<tr>
-<td style="text-align: right;">Byte 5-26</td>
-<td>stream status</td>
-<td>string</td>
-<td>S:ON</td>
-<td>Camera resolution</td>
-<td style="text-align: center;">S: ON or S:OFF</td>
+<td>message</td>
+<td>bytearray</td>
+<td>f</td>
+<td>Commands or telemetry</td>
+<td style="text-align: center;">1,2,3,4,5,6,7,8,9,f,r,s</td>
 </tr>
 <tr>
 <td style="text-align: right;">Byte end</td>
