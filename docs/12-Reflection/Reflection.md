@@ -1,10 +1,9 @@
+---
+title: Reflection
+---
 
-
-## Review
-Review of Module's Success: Reviewing back on your module requirements, what requirements did you succeed in accomplishing? What requirements were missed?
+# Review
 I was successful in getting all requirements of my subsystem working. I was able to successfully have a working Wi-Fi connection and be able to send and recieve messages over UART between team members.
-
-## Reflection
 
 # Lessons Learned
 Top 10 most important things that I learned from working on this project:
