@@ -7,11 +7,11 @@ tags:
 <center>
 <font size= "6">Matthew Sanderson's Datasheet</font><br>
 as part of<br>
-<font size= "8"> Project Name</font><br>
+<font size= "8"> Sable </font><br>
 for<br>
 <font size= "5"> Team 303 </font><br>
 
-**Submission: January, 18, 2026**
+**Submission: May, 4, 2026**
 </center>
 
 ## Introduction
@@ -27,5 +27,5 @@ for<br>
 
 * My role of the team is to keep the team website organized and updated to make sure we have everything needed.
 
-To review the details listed of the material used to construct the subsection, you can review it in the ["BOM"](https://embedded-systems-design.github.io/EGR314DataSheetTemplate/04-BOM/BOM/) section of the datasheet.
+To review the details listed of the material used to construct the Wi-Fi Subsystem, you can review it in the ["BOM"](https://embedded-systems-design.github.io/EGR314DataSheetTemplate/04-BOM/BOM/) section of the datasheet.
 
