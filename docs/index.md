@@ -27,5 +27,5 @@ for<br>
 
 * My role of the team is to keep the team website organized and updated to make sure we have everything needed.
 
-To review the details listed of the material used to construct the Wi-Fi Subsystem, you can review it in the ["BOM"](https://embedded-systems-design.github.io/EGR314DataSheetTemplate/04-BOM/BOM/) section of the datasheet.
+To review the details listed of the material used to construct the Wi-Fi Subsystem, you can review it in the ["BOM"](https://msande84.github.io/msande84.EGR314.github.io/06-BOM/BOM/) section of the datasheet.
 
