@@ -945,6 +945,77 @@
 </tr>
 </tbody>
 </table>
+<p><em>Message Structure</em></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;"><strong>Byte</strong></th>
+<th><strong>Variable Name</strong></th>
+<th><strong>Type</strong></th>
+<th><strong>Example</strong></th>
+<th><strong>Description</strong></th>
+<th style="text-align: center;"><strong>Message Range</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">Byte 1-2</td>
+<td>start</td>
+<td>char</td>
+<td>AZ</td>
+<td>Start of the message</td>
+<td style="text-align: center;">AZ-AZ</td>
+</tr>
+<tr>
+<td style="text-align: right;">Byte 3</td>
+<td>source_id</td>
+<td>char</td>
+<td>C</td>
+<td>Who is it from?</td>
+<td style="text-align: center;">C,L,M,K,V.X</td>
+</tr>
+<tr>
+<td style="text-align: right;">Byte 4</td>
+<td>dest_id</td>
+<td>char</td>
+<td>L</td>
+<td>Who is it for?</td>
+<td style="text-align: center;">C,L,M,K,V.X</td>
+</tr>
+<tr>
+<td style="text-align: right;">Byte 5-26</td>
+<td>fps</td>
+<td>string</td>
+<td>F: 2.0</td>
+<td>Current camera framerate</td>
+<td style="text-align: center;">0-99</td>
+</tr>
+<tr>
+<td style="text-align: right;">Byte 5-26</td>
+<td>resolution</td>
+<td>string</td>
+<td>R:320x240</td>
+<td>Camera resolution</td>
+<td style="text-align: center;">320x240</td>
+</tr>
+<tr>
+<td style="text-align: right;">Byte 5-26</td>
+<td>stream status</td>
+<td>string</td>
+<td>S:ON</td>
+<td>Camera resolution</td>
+<td style="text-align: center;">S: ON or S:OFF</td>
+</tr>
+<tr>
+<td style="text-align: right;">Byte end</td>
+<td>end</td>
+<td>char</td>
+<td>YB</td>
+<td>End of message</td>
+<td style="text-align: center;">YB-YB</td>
+</tr>
+</tbody>
+</table>
 
 
 
