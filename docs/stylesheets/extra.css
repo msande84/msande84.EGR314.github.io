@@ -15,11 +15,6 @@
   scroll-behavior: smooth;
 }
 
-/* Hide ugly scrollbar (optional, Chrome) */
-.md-tabs__list::-webkit-scrollbar {
-  height: 6px;
-}
-
 article{
     a {
         font-style:italic;
