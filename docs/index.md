@@ -20,7 +20,7 @@ for<br>
 
 ### Project Summary
 
-* This needs to be updated to reflect <ins>your version</ins> of the team project, so when shared not via the team's report, the reader gets an idea of the direction of the project and how your work will contribute to the overall success.
+* Overall the project was a success. We got everyones subsystem functional. There were many hiccups along the way with multiple team members needing to update their PCB and order a new one. The design of our project ended up being one subsystem to control the drive train, one to control the manipulator, one as a sound sensor, one as a camera, one as the human machine interface, and one as the Wi-Fi connection. My subsystem was the Wi-Fi connection to read telemetry from the sound sensor and the camera. It also allowed for remote commands to be sent to the project.
 * Here is the link to the team datasheet [team report.](https://egr314-s-2026-303.github.io/)
 
 ### My Contribution
