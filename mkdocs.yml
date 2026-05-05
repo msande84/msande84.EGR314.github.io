@@ -55,7 +55,23 @@ extra_css:
 extra_javascript:
  - javascripts/mathjax.js
  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
-    
+
+nav:
+  - Home: index.md
+  - 01 Requirements: 01-Requirements/Requirements.md
+  - 02 Block Diagram: 02-Block-Diagram/Block-Diagram.md
+  - 03 Component Selection: 03-Component-Selection/Component-Selection.md
+  - 04 Microcontroller Selection: 04-Microcontroller-Selection/Microcontroller-Selection.md
+  - 05 Power Budget: 05-Power-Budget/Power-Budget.md
+  - 06 BOM: 06-BOM/BOM.md
+  - 07 Schematic: 07-Schematic/Schematic.md
+  - 08 PCB: 08-PCB/PCB.md
+  - 09 API: 09-API/API.md
+  - 10 Hardware V2.0: 10-Hardware V2.0/HardwareV2.md
+  - 11 Resources: 11-Resources/Resources.md
+  - 12 Reflection: 12-Reflection/Reflection.md
+  - Appendix: Appendix/index.md
+  
 not_in_nav: |
   static
   
