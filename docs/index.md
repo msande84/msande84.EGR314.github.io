@@ -14,6 +14,9 @@ for<br>
 **Submission: May, 4, 2026**
 </center>
 
+![PCB](PCB_Matthew.jpg)
+**Figure 01:** Showing my PCB of the wireless subsystem.
+
 ## Introduction
 
 * **This datasheet shows Matthew Sanderson's part of the project for team 303.**
