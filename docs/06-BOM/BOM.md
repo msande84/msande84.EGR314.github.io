@@ -10,7 +10,7 @@ Here is the Bill of Materials for the Wireless subsystem.
 
 ## Bill of Materials 
 ![](BOM-Screenshot.png){style width: "2000"}
-**Figure ##:** Bill of Materials as a screenshot.
+**Figure 04:** Bill of Materials as a screenshot.
 
 ## Resouce
 
